@@ -1,0 +1,17 @@
+- hosts: localhost
+  become: True
+  gather_facts: False
+  tasks:
+   - name: PLAY | Patching Process
+     shell: if ps -ef | grep jenkins | grep -v grep > /dev/null; then echo 'jenkins is running'; else echo 'jenkins is not running!!!';fi
+     register: result
+     ignore_errors: True
+   - debug:
+       msg: "{{result.stdout}}"
+   - name: PLAY | Decision point to start patching
+     fail:
+       msg: "localhost have processes running please stop or close them then start patching!"
+     when: result.stdout == "jenkins is running" 
+
+
+
