@@ -1,0 +1,13 @@
+- hosts: localhost
+  become: True
+  gather_facts: False
+  tasks:
+    - name: PLAY | Checking Dir
+      stat:
+        path: /home/vernit/playbook.yml
+      register: Downloads_file
+
+    - assert:
+        that: Downloads_file.stat.exists
+        success_msg: "exists"
+        fail_msg: "does not exists"
