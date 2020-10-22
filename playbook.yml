@@ -11,7 +11,7 @@
    - name: PLAY | Decision point to start patching
      fail:
        msg: "localhost have processes running please stop or close them then start patching!"
-     when: result.stdout == "jenkins is running" 
+     when: result.stdout == "jenkins is running perfectly!!!!!!!!!!!!!!!!" 
 
 
 
